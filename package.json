@@ -1,0 +1,25 @@
+{
+  "name": "arith-generator",
+  "version": "0.0.1",
+  "description": "Generate arithmetic formulas for arithmetic learners.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/luyanfei/arith-generator.git"
+  },
+  "keywords": [
+    "arithmetic"
+  ],
+  "author": "luyanfei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luyanfei/arith-generator/issues"
+  },
+  "homepage": "https://github.com/luyanfei/arith-generator#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
