@@ -24,18 +24,18 @@ function rand(scope) {
 }
 /**随机生成结果不超过指定范围的算式。
 *返回生成该随机算式的函数。
-*maxscope为算式中最大数的取值范围，类型为数组。
+*maxscope为算式中最大数的取值范围，类型为数组。不同运算法则中max的位置是不同的。
 *ascope为算式中某个数的取值范围，类型为数组。
 **/
 function random_formula(op, maxscope, ascope) {
     var m = sample(maxscope);
     //在算式中确定一个数后，另一个数的取值也会受取限制
     if(op === 'add' || op === 'sub') {
-        ascope = ascope.filter((value) => value < m);
+        ascope = ascope.filter(value => value < m);
     }
     //如果是乘除法，要过滤掉不能被整除的数。
     if(op === 'div' || op === 'mul') {
-        ascope = ascope.filter((value) => m % value === 0);
+        ascope = ascope.filter(value => m % value === 0);
     }
     //必须考虑ascope的长度为0的情况。
     var a = ascope.length > 0 ? sample(ascope) : m;
@@ -87,7 +87,7 @@ function generate_formulas(arith) {
     var formulas = [];
     //指定了最大值范围的情形。
     if (arith.maxscope) {
-        arith.operators.forEach((op) => {
+        arith.operators.forEach(op => {
             var arr = random_formulas_in_scope(arith.maxscope, opcount, op);
             formulas.push(...arr);
         });
