@@ -1,5 +1,6 @@
 const {expect} = require('chai')
-const {random_formula, random_formulas_in_scope} = require('../index.js')
+const {random_formula, random_formulas_in_scope} = require('../arith.js')
+const {formula, from} = require('../index.js')
 
 describe('arith-generator test', function() {
     it('test random_formula', function() {
@@ -18,5 +19,17 @@ describe('arith-generator test', function() {
         formulas.forEach(f => {
             expect(f.a).below(100)
         })
+    })
+
+    it('test from function', function() {
+        let f = from('23_32_add_4')
+        expect(f.a).equal(23)
+        expect(f.result).equal(55)
+    })
+
+    it('test formula function', function() {
+        let f = formula(12, 23)
+        expect(f.key).equal('12_23_add_4')
+        expect(f.result).equal(35)
     })
 })
