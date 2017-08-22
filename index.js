@@ -1,12 +1,12 @@
-const shuffle = require('lodash/shuffle')
-const {formula, random_formulas_in_scope} = require('./arith.js')
+var shuffle = require('lodash/shuffle')
+var arith = require('./arith.js')
 //从key还原回BinaryFormula对象。
-const from = key => {
+function from(key){
     var values = key.split('_');
     if(values.length !== 4) {
         throw new Error(`wrong parameter key: ${key}`);
     }
-    return formula(
+    return arith.formula(
         Number.parseInt(values[0], 10),
         Number.parseInt(values[1], 10),
         values[2],
@@ -21,9 +21,9 @@ function mul_table(scope = 9) {
     if(scope <= 1 || scope > 9) {
         throw new Error('Wrong scope for multiplication_table: ' + scope);
     }
-    var table = [];
-    for(let i = 2; i <= scope; i++) {
-        for(let j = 2; j <= 9; j++) {
+    var table = []; var i,j;
+    for(i = 2; i <= scope; i++) {
+        for(j = 2; j <= 9; j++) {
             table.push(formula(i, j, 'mul'));
         }
     }
@@ -42,7 +42,7 @@ function generate_formulas(arith) {
     //指定了最大值范围的情形。
     if (arith.maxscope) {
         arith.operators.forEach(op => {
-            var arr = random_formulas_in_scope(arith.maxscope, opcount, op);
+            var arr = arith.random_formulas_in_scope(arith.maxscope, opcount, op);
             formulas.push(...arr);
         });
     }
@@ -50,6 +50,12 @@ function generate_formulas(arith) {
     return shuffle(formulas).slice(0, arith.count);
 }
 
-const rand = scope => operator => count => random_formulas_in_scope(scope, count, operator)
+function rand(scope) {
+    return function(operator) {
+        return function(count) {
+            return arith.random_formulas_in_scope(scope, count, operator)
+        }
+    }
+}
 
-module.exports = {formula, from, rand}
+module.exports = {formula: arith.formula, from: from, rand: rand}
