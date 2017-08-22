@@ -43,7 +43,7 @@ function generate_formulas(arith) {
     if (arith.maxscope) {
         arith.operators.forEach(function(op) {
             var arr = arith.random_formulas_in_scope(arith.maxscope, opcount, op);
-            formulas.push(...arr);
+            formulas = formulas.concat(arr);
         });
     }
     //生成的算式数量可能会超出count的范围，只取指数量的算式。
