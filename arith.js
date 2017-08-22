@@ -9,19 +9,19 @@ var OPERATORS = ['add', 'sub', 'mul', 'div'];
 //op table
 var opt = {
     add: {
-        func: (a,b) => a+b,
+        func: function(a,b) {return a+b},
         sym: '+'
     },
     sub: {
-        func: (a,b) => a-b,
+        func: function(a,b) {return a-b},
         sym: '-'
     },
     mul: {
-        func: (a,b) => a*b,
+        func: function(a,b) {return a*b},
         sym: '×'
     },
     div: {
-        func: (a,b) => a/b,
+        func: function(a,b) {return a/b},
         sym: '÷'
     }
 }
