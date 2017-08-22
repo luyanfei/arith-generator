@@ -4,7 +4,7 @@ var arith = require('./arith.js')
 function from(key){
     var values = key.split('_');
     if(values.length !== 4) {
-        throw new Error(`wrong parameter key: ${key}`);
+        throw new Error('wrong parameter key: ' + key + '.');
     }
     return arith.formula(
         Number.parseInt(values[0], 10),

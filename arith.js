@@ -41,7 +41,7 @@ function formula(a, b, op='add', mask=4) {
     maskedArray[mask] = VACANCY
     return {
         a, b, op, mask, sign, result,
-        key: `${a}_${b}_${op}_${mask}`, //生成算式的key，方便数据库处理，并能很方便地还原为formula对象
+        key: a + '_' + b + '_' + op + '_' + mask, //生成算式的key，方便数据库处理，并能很方便地还原为formula对象
         formulaArray, maskedArray,
         answer: formulaArray[mask]
     }
@@ -100,7 +100,7 @@ function cal_other(op, max, a) {
     }
     if(op === 'mul' || op === 'div') {
         if(max % a !== 0) {
-            throw new Error(`${max} cannot divide exactly by ${a}.`);
+            throw new Error(max + ' cannot divide exactly by ' + a + '.');
         }
         return max / a;
     }
