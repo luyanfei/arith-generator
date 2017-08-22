@@ -107,7 +107,7 @@ function cal_other(op, max, a) {
 }
 
 module.exports = {
-    formula,
-    random_formulas_in_scope,
-    random_formula
+    formula: formula,
+    random_formulas_in_scope: random_formulas_in_scope,
+    random_formula: random_formula
 };
