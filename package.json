@@ -1,6 +1,6 @@
 {
   "name": "arith-generator",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Generate arithmetic formulas for arithmetic learners.",
   "main": "index.js",
   "scripts": {

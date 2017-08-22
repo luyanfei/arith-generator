@@ -46,9 +46,9 @@ function formula(a, b, op, mask) {
     var maskedArray = formulaArray.slice(0);
     maskedArray[mask] = VACANCY
     return {
-        a, b, op, mask, sign, result,
+        a:a, b:b, op:op, mask:mask, sign:sign, result:result,
         key: a + '_' + b + '_' + op + '_' + mask, //生成算式的key，方便数据库处理，并能很方便地还原为formula对象
-        formulaArray, maskedArray,
+        formulaArray:formulaArray, maskedArray:maskedArray,
         answer: formulaArray[mask]
     }
 }
