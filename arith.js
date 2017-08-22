@@ -31,7 +31,13 @@ var opt = {
 //默认情况下，掩掉result。
 //a + b = result 数组形式
 //0 1 2 3 4      相应下标
-function formula(a, b, op='add', mask=4) {
+function formula(a, b, op, mask) {
+    if(typeof op === 'undefined') {
+        op = 'add';
+    }
+    if(typeof mask === 'undefined') {
+        mask = 4;
+    }
     var sign = opt[op].sym
     var result = opt[op].func(a, b)
     //数组形式
@@ -57,7 +63,10 @@ function isTrivial(fma) {
     return false;
 }
 
-function random_formulas_in_scope(arithScope, count, operator = 'add') {
+function random_formulas_in_scope(arithScope, count, operator) {
+    if(typeof operator === 'undefined') {
+        operator = 'add';
+    }
     return times(count*2, function() {
         var maxscope = range(2, arithScope);
         var ascope = range(2,arithScope);
@@ -76,11 +85,11 @@ function random_formula(op, maxscope, ascope) {
     var m = sample(maxscope);
     //在算式中确定一个数后，另一个数的取值也会受取限制
     if(op === 'add' || op === 'sub') {
-        ascope = ascope.filter(value => value < m);
+        ascope = ascope.filter(function(value) {return value < m});
     }
     //如果是乘除法，要过滤掉不能被整除的数。
     if(op === 'div' || op === 'mul') {
-        ascope = ascope.filter(value => m % value === 0);
+        ascope = ascope.filter(function(value) {return m % value === 0});
     }
     //必须考虑ascope的长度为0的情况。
     var a = ascope.length > 0 ? sample(ascope) : m;

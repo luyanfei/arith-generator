@@ -17,8 +17,8 @@ function from(key){
 /**
 * 指定范围内的乘法口诀表
 **/
-function mul_table(scope = 9) {
-    if(scope <= 1 || scope > 9) {
+function mul_table(scope) {
+    if(typeof scope === 'undefined' || scope <= 1 || scope > 9) {
         throw new Error('Wrong scope for multiplication_table: ' + scope);
     }
     var table = []; var i,j;
@@ -41,7 +41,7 @@ function generate_formulas(arith) {
     var formulas = [];
     //指定了最大值范围的情形。
     if (arith.maxscope) {
-        arith.operators.forEach(op => {
+        arith.operators.forEach(function(op) {
             var arr = arith.random_formulas_in_scope(arith.maxscope, opcount, op);
             formulas.push(...arr);
         });
