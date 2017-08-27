@@ -1,6 +1,6 @@
 const {expect} = require('chai')
 const {random_formula, random_formulas_in_scope} = require('../arith.js')
-const {formula, from} = require('../index.js')
+const {formula, from, generate} = require('../index.js')
 
 describe('arith-generator test', function() {
     it('test random_formula', function() {
@@ -31,5 +31,24 @@ describe('arith-generator test', function() {
         let f = formula(12, 23)
         expect(f.key).equal('12_23_add_4')
         expect(f.result).equal(35)
+    })
+
+    it('test mul_table', function() {
+        let t = generate({mulscope:9})
+        expect(t.length).equal(64)
+    })
+
+    it('test generate', function() {
+        let config = {
+            count: 50,
+            operators: ['mul', 'sub', 'div'],
+            maxscope: 100
+        }
+        let formulas = generate(config)
+        expect(formulas.length).equal(50)
+        formulas.forEach(formula => {
+            expect(formula.result).below(100)
+            expect(formula.op).oneOf(['mul', 'sub', 'div'])
+        })
     })
 })

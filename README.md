@@ -9,3 +9,4 @@ Arithmetic formula generator.
 * 移除剩余的=>。(0.0.7)
 * 移除对象简化写法。(0.0.8)
 * 添加mul_table, generate_formulas的导出。（0.0.9）
+* 通用的generate方法。测试了generate方法。(0.1.0)
