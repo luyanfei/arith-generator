@@ -58,4 +58,10 @@ function rand(scope) {
     }
 }
 
-module.exports = {formula: arith.formula, from: from, rand: rand}
+module.exports = {
+    formula: arith.formula,
+    from: from,
+    rand: rand,
+    mul_table: mul_table,
+    generate_formulas: generate_formulas
+}
