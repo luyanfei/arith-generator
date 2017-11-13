@@ -33,11 +33,6 @@ describe('arith-generator test', function() {
         expect(f.result).equal(35)
     })
 
-    it('test mul_table', function() {
-        let t = generate({mulscope:9})
-        expect(t.length).equal(64)
-    })
-
     it('test generate', function() {
         let config = {
             count: 50,
@@ -50,5 +45,16 @@ describe('arith-generator test', function() {
             expect(formula.result).below(100)
             expect(formula.op).oneOf(['mul', 'sub', 'div'])
         })
+    })
+
+    it('test mul_table', function() {
+        let config1 = {mulscope: 9}
+        let formulas1 = generate(config1)
+        // formulas1.forEach(f => console.log(f.key))
+        expect(formulas1.length).equal(36)
+        let config2 = {mulscope: [11, 19]}
+        let formulas2 = generate(config2)
+        expect(formulas2.length).equal(45)
+        // formulas2.forEach(f => console.log(f.key))
     })
 })

@@ -10,3 +10,4 @@ Arithmetic formula generator.
 * 移除对象简化写法。(0.0.8)
 * 添加mul_table, generate_formulas的导出。（0.0.9）
 * 通用的generate方法。测试了generate方法。(0.1.0)
+* 让mul_table可以生成更多范围的乘法表。(0.1.1)
